@@ -1,5 +1,5 @@
-# AirBnB_clone
-AirBnB clone repo from ALX Africa
+# Airbnb_clone
+Airbnb clone repo from ALX Africa
 
 ##Background Context
 Welcome to the AirBnB clone project!
