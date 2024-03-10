@@ -29,7 +29,6 @@ class HBNBCommand(cmd.Cmd):
         """Handle empty input lines."""
         pass
 
-
     def do_create(self, arg):
         """Create a new instance of BaseModel, saves it, and prints the id."""
         if not arg:
@@ -56,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = args[1]
-        key = class_name + '.' + obj_id
+        key = "{}.{}".format(class_name, obj_id)
         if key not in storage.all():
             print("** no instance found **")
             return
@@ -76,7 +75,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = args[1]
-        key = class_name + '.' + obj_id
+        key = "{}.{}".format(class_name, obj_id)
         if key not in storage.all():
             print("** no instance found **")
             return
@@ -115,7 +114,7 @@ class HBNBCommand(cmd.Cmd):
             print("** instance id missing **")
             return
         obj_id = args[1]
-        key = class_name + '.' + obj_id
+        key = "{}.{}".format(class_name, obj_id)
         if key not in storage.all():
             print("** no instance found **")
             return
@@ -127,7 +126,6 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(storage.all()[key], args[2], args[3].strip('"'))
         storage.all()[key].save()
-
 
 
 if __name__ == '__main__':
