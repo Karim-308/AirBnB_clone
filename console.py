@@ -3,6 +3,7 @@
 
 import cmd
 import uuid
+import re
 from datetime import datetime
 from models import storage
 from models.base_model import BaseModel
@@ -11,6 +12,27 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
+
+
+def custom_parse(arg_string):
+    curly_match = re.search(r"\{(.*?)\}", arg_string)
+    bracket_match = re.search(r"\[(.*?)\]", arg_string)
+    if curly_match is None:
+        if bracket_match is None:
+            return [item.strip(",") for item in arg_string.split()]
+        else:
+            bracket_index = arg_string.find("[")
+            lexer = arg_string[:bracket_index].split()
+            result_list = [item.strip(",") for item in lexer]
+            result_list.append(arg_string[bracket_index:])
+            return result_list
+    else:
+        curly_index = arg_string.find("{")
+        lexer = arg_string[:curly_index].split()
+        result_list = [item.strip(",") for item in lexer]
+        result_list.append(arg_string[curly_index:])
+        return result_list
+
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBNB project."""
