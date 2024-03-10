@@ -1,37 +1,34 @@
 #!/usr/bin/python3
-"""this file is for Place class."""
-
+"""This file defines the code for the place code."""
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
-    """Represent a place.
+    """This class represents the place.
 
     Attributes:
-        name (str): place name.
-        description (str): place description.
-        number_rooms (int): The number of rooms.
-        city_id (str): City id.
-        user_id (str): User id.
-        price_by_night (int): price for nights.
-        number_bathrooms (int): The number of bathrooms.
-        max_guest (int): The maximum number of guests that can go in.
-        longitude (float): The longitude of location.
-        amenity_ids (list): A list of Amenity ids.
-        latitude (float): The latitude.
-
+        user_id (str): User's id.
+        city_id (str): City's id.
+        name (str): place's name.
+        latitude (float): The latitude of the place's latitude.
+        longitude (float): The longitude of the place's longitude.
+        description (str): the place's description.
+        number_rooms (int): the place's number of rooms.
+        price_by_night (int): night's price.
+        number_bathrooms (int): the place's number of bathrooms.
+        max_guest (int): the place's maximum number of guests.
+        amenity_ids (list): Amenity ids list.
     """
 
-    def __init__(self, *args, **kwargs):
-        """Initialize Place instance."""
-        super().__init__(*args, **kwargs)
-        self.city_id = ""
-        self.user_id = ""
-        self.name = ""
-        self.description = ""
-        self.number_rooms = 0
-        self.number_bathrooms = 0
-        self.max_guest = 0
-        self.price_by_night = 0
-        self.latitude = 0.0
-        self.longitude = 0.0
-        self.amenity_ids = []
+
+    user_id = ""
+    city_id = ""
+    name = ""
+    latitude = 0.0
+    longitude = 0.0
+    description = ""
+    number_rooms = 0
+    price_by_night = 0
+    number_bathrooms = 0
+    max_guest = 0
+    amenity_ids = []
