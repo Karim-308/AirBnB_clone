@@ -1,18 +1,15 @@
 #!/usr/bin/python3
-
-
-
+"""This file define the city class"""
 from models.base_model import BaseModel
 
-class City(BaseModel):
-    """Defines the City class."""
-    
-    state_id = ""  # Example attribute specific to City class
-    name = ""      # Example attribute specific to City class
 
-    def __init__(self, *args, **kwargs):
-        """Initialize a new City instance."""
-        super().__init__(*args, **kwargs)
-        if kwargs:
-            self.state_id = kwargs.get('state_id', "")
-            self.name = kwargs.get('name', "")
+class City(BaseModel):
+    """The class representing a city.
+
+    Attributes:
+        name (str): The city's name.
+        state_id (str): The state's id.
+    """
+
+    name = ""
+    state_id = ""
