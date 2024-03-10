@@ -14,20 +14,19 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        serialized_objects = {}
-        for key, obj in self.__objects.items():
-            serialized_objects[key] = obj.to_dict()
-        with open(self.__file_path, 'w') as file:
-            json.dump(serialized_objects, file)
+        """Save the objects to the JSON file. , TOBE checked again"""
+        with open(self.__file_path, "w") as file:
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
+ 
     def reload(self):
+        """Reload the objects from the JSON file. TOBE checked again """
         try:
-            with open(self.__file_path, 'r') as file:
-                serialized_objects = json.load(file)
-                for key, value in serialized_objects.items():
+            with open(self.__file_path, "r") as file:
+                data = json.load(file)
+                for key, value in data.items():
                     class_name, obj_id = key.split('.')
-                    module = __import__('models.' + class_name, fromlist=[class_name])
-                    class_ = getattr(module, class_name)
-                    self.__objects[key] = class_(**value)
+                    cls = eval(class_name)
+                    self.__objects[key] = cls(**value)
         except FileNotFoundError:
             pass
