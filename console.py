@@ -12,9 +12,6 @@ from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
 
-
-
-
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBNB project."""
 
@@ -136,7 +133,6 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(storage.all()[key], args[2], args[3].strip('"'))
         storage.all()[key].save()
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
