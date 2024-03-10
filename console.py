@@ -90,22 +90,21 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
     def do_all(self, arg):
-        """Prints all string representation of all instances."""
+        """Prints all string representation of all instances of a given class."""
         args = arg.split()
-        obj_list = []
         if not args:
-            for key in storage.all():
-                obj_list.append(str(storage.all()[key]))
-            print(obj_list)
+            print("** class name missing **")
             return
         class_name = args[0]
         if class_name not in globals():
             print("** class doesn't exist **")
             return
-        for key in storage.all():
-            if key.split('.')[0] == class_name:
-                obj_list.append(str(storage.all()[key]))
-        print(obj_list)
+        all_instances = []
+        for instance in storage.all().values():
+            if type(instance).__name__ == class_name:
+                all_instances.append(str(instance))
+        print(all_instances)
+
 
     def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or updating attribute."""
