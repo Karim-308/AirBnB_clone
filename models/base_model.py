@@ -19,8 +19,9 @@ class BaseModel:
                         setattr(self, key, value)
         else:
             self.id = str(uuid.uuid4())
-            self.created_at = datetime.now()
-            self.updated_at = datetime.now()
+            now = datetime.now()
+            self.created_at = now
+            self.updated_at = now
 
     def __set_attributes(self, kwargs):
         """Set instance attributes from dictionary."""
@@ -34,12 +35,14 @@ class BaseModel:
         """Return a string representation of the BaseModel instance."""
         return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
 
-    def save(self):
-        """Update the updated_at attribute with the current datetime."""
-        from models import storage
+    def save(self, storage=None):
+        """Update the updated_at attribute with the current datetime and save the object."""
+        if storage:
+            from models import storage
         self.updated_at = datetime.now()
-        storage.new(self)
-        storage.save()
+        if storage:
+            storage.new(self)
+            storage.save()
 
     def to_dict(self):
         """Return a dictionary representation of the BaseModel instance."""
