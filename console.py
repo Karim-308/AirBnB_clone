@@ -135,13 +135,19 @@ class HBNBCommand(cmd.Cmd):
         storage.all()[key].save()
 
 
-  def do_count(self, arg):
+   def do_count(self, arg):
         """Usage: count <class> or <class>.count()
         Retrieve the number of instances of a given class."""
-        argl = parse(arg)
+        class_name = arg.split('.')[0]
+        if class_name not in globals():
+            print("** class doesn't exist **")
+            return
+        if len(arg.split('.')) == 2 and arg.split('.')[1] != 'count()':
+            print("** Unknown syntax: {}".format(arg))
+            return
         count = 0
         for obj in storage.all().values():
-            if argl[0] == obj.__class__.__name__:
+            if obj.__class__.__name__ == class_name:
                 count += 1
         print(count)
 
