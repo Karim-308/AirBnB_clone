@@ -1,10 +1,12 @@
 #!/usr/bin/python3
+"""this file define the State class."""
 from models.base_model import BaseModel
 
 class State(BaseModel):
-    """Defines the State class."""
+    """Represent a state class definition.
 
-    def __init__(self, *args, **kwargs):
-        """Initialize State instance."""
-        super().__init__(*args, **kwargs)
-        self.name = ""
+    Attributes:
+        name (str): The state name.
+    """
+
+    name = ""
