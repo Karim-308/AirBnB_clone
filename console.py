@@ -17,6 +17,31 @@ class HBNBCommand(cmd.Cmd):
 
     prompt = '(hbnb) '
 
+      __classes = {
+        "BaseModel",
+        "User",
+        "State",
+        "City",
+        "Place",
+        "Amenity",
+        "Review"
+    }
+
+   def parse(self, arg):
+        """Parse the arguments."""
+        parts = []
+        start = 0
+        in_quote = False
+        for i, char in enumerate(arg):
+            if char == '"' and (i == 0 or arg[i - 1] != '\\'):
+                in_quote = not in_quote
+            elif char == ',' and not in_quote:
+                parts.append(arg[start:i].strip())
+                start = i + 1
+        parts.append(arg[start:].strip())
+        return parts
+
+
     def do_quit(self, arg):
         """Quit command to exit the program."""
         return True
@@ -34,14 +59,14 @@ class HBNBCommand(cmd.Cmd):
         """Handle empty input lines."""
         pass
 
-    def do_create(self, arg):
+  def do_create(self, arg):
         """Create a new instance of BaseModel, saves it, and prints the id."""
-        args = arg.split()
+        args = self.parse(arg)
         if not args:
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in globals():
+        if class_name not in self.__classes:
             print("** class doesn't exist **")
             return
         new_instance = eval(class_name)()
@@ -50,12 +75,12 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class name and id."""
-        args = arg.split()
-        if not args:
+        args = self.parse(arg)
+        if len(args) < 2:
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in globals():
+        if class_name not in self.__classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -67,15 +92,15 @@ class HBNBCommand(cmd.Cmd):
             print("** no instance found **")
             return
         print(storage.all()[key])
-
-    def do_destroy(self, arg):
+        
+     def do_destroy(self, arg):
         """Deletes an instance based on the class name and id."""
-        args = arg.split()
-        if not args:
+        args = self.parse(arg)
+        if len(args) < 2:
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in globals():
+        if class_name not in self.__classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -89,9 +114,10 @@ class HBNBCommand(cmd.Cmd):
         del storage.all()[key]
         storage.save()
 
-    def do_all(self, arg):
+
+     def do_all(self, arg):
         """Prints all string representation of all instances."""
-        args = arg.split()
+        args = self.parse(arg)
         obj_list = []
         if not args:
             for key in storage.all():
@@ -99,7 +125,7 @@ class HBNBCommand(cmd.Cmd):
             print(obj_list)
             return
         class_name = args[0]
-        if class_name not in globals():
+        if class_name not in self.__classes:
             print("** class doesn't exist **")
             return
         for key in storage.all():
@@ -107,14 +133,14 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(storage.all()[key]))
         print(obj_list)
 
-    def do_update(self, arg):
+      def do_update(self, arg):
         """Updates an instance based on the class name and id by adding or updating attribute."""
-        args = arg.split()
-        if not args:
+        args = self.parse(arg)
+        if len(args) < 4:
             print("** class name missing **")
             return
         class_name = args[0]
-        if class_name not in globals():
+        if class_name not in self.__classes:
             print("** class doesn't exist **")
             return
         if len(args) < 2:
@@ -133,6 +159,6 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(storage.all()[key], args[2], args[3].strip('"'))
         storage.all()[key].save()
-
+          
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
