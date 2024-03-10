@@ -20,7 +20,6 @@ class Place(BaseModel):
         amenity_ids (list): Amenity ids list.
     """
 
-
     user_id = ""
     city_id = ""
     name = ""
