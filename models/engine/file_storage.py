@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """This file defines the file storage"""
 import json
+import os
 import sys
 import errno
 from models.base_model import BaseModel
