@@ -3,7 +3,6 @@
 
 import cmd
 import uuid
-import re
 from datetime import datetime
 from models import storage
 from models.base_model import BaseModel
@@ -12,27 +11,6 @@ from models.city import City
 from models.amenity import Amenity
 from models.place import Place
 from models.review import Review
-
-
-def custom_parse(arg_string):
-    curly_match = re.search(r"\{(.*?)\}", arg_string)
-    bracket_match = re.search(r"\[(.*?)\]", arg_string)
-    if curly_match is None:
-        if bracket_match is None:
-            return [item.strip(",") for item in arg_string.split()]
-        else:
-            bracket_index = arg_string.find("[")
-            lexer = arg_string[:bracket_index].split()
-            result_list = [item.strip(",") for item in lexer]
-            result_list.append(arg_string[bracket_index:])
-            return result_list
-    else:
-        curly_index = arg_string.find("{")
-        lexer = arg_string[:curly_index].split()
-        result_list = [item.strip(",") for item in lexer]
-        result_list.append(arg_string[curly_index:])
-        return result_list
-
 
 class HBNBCommand(cmd.Cmd):
     """Command interpreter for HBNB project."""
@@ -69,7 +47,6 @@ class HBNBCommand(cmd.Cmd):
         new_instance = eval(class_name)()
         new_instance.save()
         print(new_instance.id)
-
 
     def do_show(self, arg):
         """Prints the string representation of an instance based on the class name and id."""
@@ -156,18 +133,6 @@ class HBNBCommand(cmd.Cmd):
             return
         setattr(storage.all()[key], args[2], args[3].strip('"'))
         storage.all()[key].save()
-
-
-    def do_count(self, arg):
-        """Usage: count <class> or <class>.count()
-        Retrieve the number of instances of a given class."""
-        argl = parse(arg)
-        count = 0
-        for obj in storage.all().values():
-            if argl[0] == obj.__class__.__name__:
-                count += 1
-        print(count)
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
