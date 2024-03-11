@@ -1,5 +1,28 @@
 #!/usr/bin/python3
-"""Module for HBNBCommand class, a command interpreter for the HBNB project."""
+"""This module serves as the central command interpreter for the HBNB project.
+
+It introduces the `HBNBCommand()` class, which extends the functionality of the `cmd.Cmd` class. This module encapsulates the logic for interacting with the underlying storage system, allowing for seamless manipulation of data models and objects.
+
+Key features include:
+    - Creation and management of data models and objects
+    - Interactive and non-interactive modes for ease of use
+    - Flexible storage options, supporting both FileStorage and database implementations
+
+Example usage:
+
+    $ ./console
+    (hbnb)
+
+    (hbnb) help
+    Documented commands (type help <topic>):
+    ========================================
+    EOF  create  help  quit
+
+    (hbnb)
+    (hbnb) quit
+    $
+"""
+
 import cmd
 import uuid
 from datetime import datetime
