@@ -1,14 +1,17 @@
 #!/usr/bin/python3
-"""This module serves as the central command interpreter for the HBNB project.
+"""This module serves as the central command interpreter
+for the HBNB project.
 
-It introduces the `HBNBCommand()` class, which extends the functionality of the `cmd.Cmd` class.
-This module encapsulates the logic for interacting with the underlying storage system,
+It introduces the `HBNBCommand()` class, which extends
+the functionality of the `cmd.Cmd` class.
+This module encapsulates the logic for interacting with
+the underlying storage system,
 allowing for seamless manipulation of data models and objects.
 
 Key features include:
-    - Creation and management of data models and objects
-    - Interactive and non-interactive modes for ease of use
-    - Flexible storage options, supporting both FileStorage and database implementations
+- Creation and management of data models and objects
+- Interactive and non-interactive modes for ease of use
+- Flexible storage options, for FileStorage and database
 
 Example usage:
 
@@ -100,7 +103,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_show(self, arg):
         """
-        Print the string representation of an instance based on the class name and id.
+        Print the string representation of an instance
+        based on the class name and id.
 
         Usage: show <class_name> <id>
         """
@@ -149,7 +153,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_all(self, arg):
         """
-        Print the string representation of all instances or instances of a specific class.
+        Print the string representation of all instances
+        or instances of a specific class.
 
         Usage: all [class_name]
         """
@@ -171,7 +176,8 @@ class HBNBCommand(cmd.Cmd):
 
     def do_update(self, arg):
         """
-        Update an instance based on the class name and id by adding or updating an attribute.
+        Update an instance based on the class name
+        and id by adding or updating an attribute.
 
         Usage: update <class_name> <id> <attribute_name> <attribute_value>
         """
