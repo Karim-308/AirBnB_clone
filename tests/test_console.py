@@ -60,6 +60,25 @@ class TestConsole(unittest.TestCase):
             output = mock_out.getvalue().strip()
             self.assertIn("John", output)
 
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_count(self, mock_stdout):
+        """Test the count command."""
+        self.console.onecmd("create User")
+        self.console.onecmd("create User")
+        self.console.onecmd("count User")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_destroy_with_count(self, mock_stdout):
+        """Test the destroy command with count."""
+        self.console.onecmd("create User")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("destroy User {}".format(obj_id))
+        self.console.onecmd("count User")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "0")
+
 
 if __name__ == "__main__":
     unittest.main()
