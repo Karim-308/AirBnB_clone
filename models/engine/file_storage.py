@@ -33,7 +33,7 @@ class FileStorage:
         """Save the objects to the JSON file. , TOBE checked again"""
         with open(self.__file_path, "w") as file:
           json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
-            
+
     def reload(self):
         """Reload the objects from the JSON file. TOBE checked again """
         try:
