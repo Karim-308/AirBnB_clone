@@ -11,13 +11,21 @@ from models.review import Review
 
 
 class FileStorage:
+    """This represents an abstraction for storage engine
+
+    Attributes:
+        __file_path (str): which file to save to.
+        __objects (dict): represents the dictionary of created objects.
+    """
     __file_path = "file.json"
     __objects = {}
 
     def all(self):
+        """Return dictionary  for all __objects."""
         return self.__objects
 
     def new(self, obj):
+        """Set in <obj_class_name>.id"""        
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
