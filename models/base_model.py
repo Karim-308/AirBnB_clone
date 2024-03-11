@@ -40,7 +40,7 @@ class BaseModel:
     def save(self):
         """Update the updated_at attribute with the current datetime."""
         self.updated_at = datetime.now()
-        models.storage.save()
+        models.FileStorage().save()
 
     def to_dict(self):
         """Return a dictionary representation of the BaseModel instance."""
