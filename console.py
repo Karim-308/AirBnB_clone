@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """This module serves as the central command interpreter for the HBNB project.
 
-It introduces the `HBNBCommand()` class, which extends the functionality of the `cmd.Cmd` class. This module encapsulates the logic for interacting with the underlying storage system, allowing for seamless manipulation of data models and objects.
+It introduces the `HBNBCommand()` class, which extends the functionality of the `cmd.Cmd` class.
+This module encapsulates the logic for interacting with the underlying storage system,
+allowing for seamless manipulation of data models and objects.
 
 Key features include:
     - Creation and management of data models and objects
