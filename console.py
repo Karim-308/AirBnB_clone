@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module for HBNBCommand class, a command interpreter for the HBNB project."""
-
 import cmd
 import uuid
 from datetime import datetime
@@ -14,8 +13,12 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command interpreter for the HBNB project."""
-
+    """Command interpreter for the HBNB project.
+    
+    Attributes:
+        prompt (str): The command prompt.
+    """
+    
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
