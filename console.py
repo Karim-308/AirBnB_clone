@@ -24,7 +24,6 @@ Example usage:
     (hbnb) quit
     $
 """
-
 import cmd
 import uuid
 from datetime import datetime
@@ -38,10 +37,12 @@ from models.review import Review
 
 
 class HBNBCommand(cmd.Cmd):
-    """Command interpreter for the HBNB project.
-    
-    Attributes:
-        prompt (str): The command prompt.
+    """The command interpreter.
+
+    Class is the command interpreter with center for control
+    for the project. This has handlers for all  the commands in
+    console and calls the storage engine APIs to manipulate
+    the data and models.
     """
     
     prompt = '(hbnb) '
