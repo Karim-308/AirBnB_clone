@@ -21,7 +21,7 @@ class FileStorage:
     __objects = {}
 
     def all(self):
-        """Return dictionary  for all __objects."""
+        """Return dictionary for all __objects."""
         return self.__objects
 
     def new(self, obj):
@@ -30,12 +30,12 @@ class FileStorage:
         self.__objects[key] = obj
 
     def save(self):
-        """Save the objects to the JSON file. , TOBE checked again"""
+        """Save the objects to the JSON file."""
         with open(self.__file_path, "w") as file:
-          json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
     def reload(self):
-        """Reload the objects from the JSON file. TOBE checked again """
+        """Reload the objects from the JSON file."""
         try:
             with open(self.__file_path, "r") as file:
                 data = json.load(file)
