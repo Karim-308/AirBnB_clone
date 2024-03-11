@@ -25,16 +25,16 @@ class FileStorage:
         return self.__objects
 
     def new(self, obj):
-        """Set in <obj_class_name>.id"""        
+        """Set in <obj_class_name>.id"""
         key = "{}.{}".format(obj.__class__.__name__, obj.id)
         self.__objects[key] = obj
 
     def save(self):
         """Save the objects to the JSON file. , TOBE checked again"""
         with open(self.__file_path, "w") as file:
-            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+          json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
- 
+
     def reload(self):
         """Reload the objects from the JSON file. TOBE checked again """
         try:
