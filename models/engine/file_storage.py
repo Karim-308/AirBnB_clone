@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """This file defines the file storage"""
 import json
+import sys
+import errno
 from models.base_model import BaseModel
 from models.user import User
 from models.state import State
@@ -34,15 +36,16 @@ class FileStorage:
         with open(self.__file_path, "w") as file:
             json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
- 
-    def reload(self):
-        """Reload the objects from the JSON file. TOBE checked again """
+     def reload(self):
+        """Deserialize the JSON file __file_path to __objects, if it exists."""
         try:
-            with open(self.__file_path, "r") as file:
-                data = json.load(file)
-                for key, value in data.items():
-                    class_name, obj_id = key.split('.')
-                    cls = eval(class_name)
-                    self.__objects[key] = cls(**value)
-        except FileNotFoundError:
-            pass
+            if os.path.exists(self.__file_path):
+                with open(self.__file_path, "r") as f:
+                    objdict = json.load(f)
+                    for o in objdict.values():
+                        cls_name = o.get("__class__")
+                        if cls_name:
+                            del o["__class__"]
+                            self.new(eval(cls_name)(**o))
+        except Exception as e:
+		print("Error loading JSON file: {}".format(e))
