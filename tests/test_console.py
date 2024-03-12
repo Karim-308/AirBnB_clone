@@ -1,6 +1,5 @@
 #!/usr/bin/python3
 """Module to test the console."""
-
 import unittest
 import sys
 import os
