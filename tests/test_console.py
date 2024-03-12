@@ -149,7 +149,6 @@ class TestConsole(unittest.TestCase):
         self.assertIn("City", output)
         self.assertIn("2", output)
 
-
     @patch('sys.stdout', new_callable=StringIO)
     def test_all_state(self, mock_stdout):
         """Test the all command for State."""
