@@ -88,6 +88,7 @@ class TestConsole(unittest.TestCase):
         output = mock_stdout.getvalue().strip()
         self.assertIn("BaseModel", output)
         self.assertIn("2", output)
+        
     @patch('sys.stdout', new_callable=StringIO)
     def test_all_review(self, mock_stdout):
         """Test the all command for Review."""
