@@ -17,6 +17,7 @@ class FileStorage:
         __file_path (str): which file to save to.
         __objects (dict): represents the dictionary of created objects.
     """
+    
     __file_path = "file.json"
     __objects = {}
 
