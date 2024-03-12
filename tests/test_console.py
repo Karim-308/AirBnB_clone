@@ -271,6 +271,5 @@ class TestConsole(unittest.TestCase):
         self.assertIn(obj_id, output)
 
 
-
 if __name__ == "__main__":
     unittest.main()
