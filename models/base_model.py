@@ -34,6 +34,7 @@ class BaseModel:
             setattr(self, key, value)
 
     def __str__(self):
+        """Update the updated_at attribute with current datetime."""
         clname = self.__class__.__name__
         return "[{}] ({}) {}".format(clname, self.id, self.__dict__)
 
