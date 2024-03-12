@@ -33,7 +33,7 @@ class FileStorage:
     def save(self):
         """Save the objects to the JSON file."""
         with open(self.__file_path, "w") as file:
-            json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
+         json.dump({k: v.to_dict() for k, v in self.__objects.items()}, file)
 
     def reload(self):
         """Reload the objects from the JSON file."""
