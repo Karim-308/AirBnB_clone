@@ -84,17 +84,16 @@ class TestConsole(unittest.TestCase):
         """Test the all command for BaseModel."""
         self.console.onecmd("create BaseModel")
         self.console.onecmd("create BaseModel")
-        self.console.onecmd("all BaseModel")
+        self.console.onecmd("BaseModel.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("BaseModel", output)
         self.assertIn("2", output)
-
     @patch('sys.stdout', new_callable=StringIO)
     def test_all_review(self, mock_stdout):
         """Test the all command for Review."""
         self.console.onecmd("create Review")
         self.console.onecmd("create Review")
-        self.console.onecmd("all Review")
+        self.console.onecmd("Review.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("Review", output)
         self.assertIn("2", output)
@@ -104,7 +103,7 @@ class TestConsole(unittest.TestCase):
         """Test the all command for User."""
         self.console.onecmd("create User")
         self.console.onecmd("create User")
-        self.console.onecmd("all User")
+        self.console.onecmd("User.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("User", output)
         self.assertIn("2", output)
@@ -114,7 +113,7 @@ class TestConsole(unittest.TestCase):
         """Test the all command for Place."""
         self.console.onecmd("create Place")
         self.console.onecmd("create Place")
-        self.console.onecmd("all Place")
+        self.console.onecmd("Place.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("Place", output)
         self.assertIn("2", output)
@@ -124,7 +123,7 @@ class TestConsole(unittest.TestCase):
         """Test the all command for Amenity."""
         self.console.onecmd("create Amenity")
         self.console.onecmd("create Amenity")
-        self.console.onecmd("all Amenity")
+        self.console.onecmd("Amenity.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("Amenity", output)
         self.assertIn("2", output)
@@ -134,7 +133,7 @@ class TestConsole(unittest.TestCase):
         """Test the all command for State."""
         self.console.onecmd("create State")
         self.console.onecmd("create State")
-        self.console.onecmd("all State")
+        self.console.onecmd("State.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("State", output)
         self.assertIn("2", output)
@@ -144,20 +143,20 @@ class TestConsole(unittest.TestCase):
         """Test the all command for City."""
         self.console.onecmd("create City")
         self.console.onecmd("create City")
-        self.console.onecmd("all City")
+        self.console.onecmd("City.all()")
         output = mock_stdout.getvalue().strip()
         self.assertIn("City", output)
         self.assertIn("2", output)
 
     @patch('sys.stdout', new_callable=StringIO)
-    def test_all_state(self, mock_stdout):
-        """Test the all command for State."""
-        self.console.onecmd("create State")
-        self.console.onecmd("create State")
-        self.console.onecmd("all State")
+    def test_all_place(self):
+        """Test the all command for Place."""
+        self.console.onecmd("create Place")
+        self.console.onecmd("create Place")
+        self.console.onecmd("Place.all()")
         output = mock_stdout.getvalue().strip()
-        self.assertIn("State", output)
-
+        self.assertIn("Place", output)
+        self.assertIn("2", output)
 
 if __name__ == "__main__":
     unittest.main()
