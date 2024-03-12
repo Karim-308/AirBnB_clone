@@ -48,7 +48,7 @@ class HBNBCommand(cmd.Cmd):
     console and calls the storage engine APIs to manipulate
     the data and models.
     """
-    
+
     prompt = '(hbnb) '
 
     def do_quit(self, arg):
