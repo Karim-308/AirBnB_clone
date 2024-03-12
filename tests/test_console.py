@@ -158,5 +158,62 @@ class TestConsole(unittest.TestCase):
         self.assertIn("Place", output)
         self.assertIn("2", output)
 
+    def test_count_base_model(self):
+        """Test the count command for BaseModel."""
+        self.console.onecmd("create BaseModel")
+        self.console.onecmd("create BaseModel")
+        self.console.onecmd("BaseModel.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_user(self):
+        """Test the count command for User."""
+        self.console.onecmd("create User")
+        self.console.onecmd("create User")
+        self.console.onecmd("User.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_state(self):
+        """Test the count command for State."""
+        self.console.onecmd("create State")
+        self.console.onecmd("create State")
+        self.console.onecmd("State.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_place(self):
+        """Test the count command for Place."""
+        self.console.onecmd("create Place")
+        self.console.onecmd("create Place")
+        self.console.onecmd("Place.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_city(self):
+        """Test the count command for City."""
+        self.console.onecmd("create City")
+        self.console.onecmd("create City")
+        self.console.onecmd("City.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_amenity(self):
+        """Test the count command for Amenity."""
+        self.console.onecmd("create Amenity")
+        self.console.onecmd("create Amenity")
+        self.console.onecmd("Amenity.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+    def test_count_review(self):
+        """Test the count command for Review."""
+        self.console.onecmd("create Review")
+        self.console.onecmd("create Review")
+        self.console.onecmd("Review.count()")
+        output = mock_stdout.getvalue().strip()
+        self.assertEqual(output, "2")
+
+
 if __name__ == "__main__":
     unittest.main()
