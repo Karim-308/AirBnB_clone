@@ -174,6 +174,14 @@ class HBNBCommand(cmd.Cmd):
                 obj_list.append(str(storage.all()[key]))
         print(obj_list)
 
+    def do_count(self, arg):
+        """Count the number of instances of a given class."""
+        classes = arg.split('.')
+        class_name = classes[0] if len(classes) == 2 else arg
+        count = sum(1 for obj in storage.all().values()
+                    if obj.__class__.__name__ == class_name)
+        print(count)
+
     def do_update(self, arg):
         """
         Update an instance based on the class name
