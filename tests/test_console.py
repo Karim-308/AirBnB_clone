@@ -214,6 +214,63 @@ class TestConsole(unittest.TestCase):
         output = mock_stdout.getvalue().strip()
         self.assertEqual(output, "2")
 
+    def test_show_base_model(self):
+        """Test the show command for BaseModel."""
+        self.console.onecmd("create BaseModel")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show BaseModel {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_user(self):
+        """Test the show command for User."""
+        self.console.onecmd("create User")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show User {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_state(self):
+        """Test the show command for State."""
+        self.console.onecmd("create State")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show State {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_place(self):
+        """Test the show command for Place."""
+        self.console.onecmd("create Place")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show Place {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_city(self):
+        """Test the show command for City."""
+        self.console.onecmd("create City")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show City {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_amenity(self):
+        """Test the show command for Amenity."""
+        self.console.onecmd("create Amenity")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show Amenity {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+    def test_show_review(self):
+        """Test the show command for Review."""
+        self.console.onecmd("create Review")
+        obj_id = mock_stdout.getvalue().strip().split()[0]
+        self.console.onecmd("show Review {}".format(obj_id))
+        output = mock_stdout.getvalue().strip()
+        self.assertIn(obj_id, output)
+
+
 
 if __name__ == "__main__":
     unittest.main()
