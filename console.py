@@ -29,8 +29,8 @@ Example usage:
 """
 import cmd
 import uuid
+import models
 from datetime import datetime
-from models import storage
 from models.base_model import BaseModel
 from models.state import State
 from models.city import City
@@ -121,7 +121,7 @@ class HBNBCommand(cmd.Cmd):
             return
         obj_id = args[1]
         key = class_name + '.' + obj_id
-        if key not in storage.all():
+        if key not in models.storage.all():
             print("** no instance found **")
             return
         print(storage.all()[key])
@@ -145,11 +145,11 @@ class HBNBCommand(cmd.Cmd):
             return
         obj_id = args[1]
         key = class_name + '.' + obj_id
-        if key not in storage.all():
+        if key not in models.storage.all():
             print("** no instance found **")
             return
-        del storage.all()[key]
-        storage.save()
+        del models.storage.all()[key]
+        models.storage.save()
 
     def do_all(self, arg):
         """
@@ -161,24 +161,24 @@ class HBNBCommand(cmd.Cmd):
         args = arg.split()
         obj_list = []
         if not args:
-            for key in storage.all():
-                obj_list.append(str(storage.all()[key]))
+            for key in models.storage.all():
+                obj_list.append(str(models.storage.all()[key]))
             print(obj_list)
             return
         class_name = args[0]
         if class_name not in globals():
             print("** class doesn't exist **")
             return
-        for key in storage.all():
+        for key in models.storage.all():
             if key.split('.')[0] == class_name:
-                obj_list.append(str(storage.all()[key]))
+                obj_list.append(str(models.storage.all()[key]))
         print(obj_list)
 
     def do_count(self, arg):
         """Count the number of instances of a given class."""
         classes = arg.split('.')
         class_name = classes[0] if len(classes) == 2 else arg
-        count = sum(1 for obj in storage.all().values()
+        count = sum(1 for obj in models.storage.all().values()
                     if obj.__class__.__name__ == class_name)
         print(count)
 
@@ -202,7 +202,7 @@ class HBNBCommand(cmd.Cmd):
             return
         obj_id = args[1]
         key = class_name + '.' + obj_id
-        if key not in storage.all():
+        if key not in models.storage.all():
             print("** no instance found **")
             return
         if len(args) < 3:
@@ -211,8 +211,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 4:
             print("** value missing **")
             return
-        setattr(storage.all()[key], args[2], args[3].strip('"'))
-        storagesave()
+        setattr(models.storage.all()[key], args[2], args[3].strip('"'))
+        models.storage.save()
 
 
 if __name__ == '__main__':
