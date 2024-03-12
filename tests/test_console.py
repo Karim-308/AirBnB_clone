@@ -79,6 +79,86 @@ class TestConsole(unittest.TestCase):
         output = mock_stdout.getvalue().strip()
         self.assertEqual(output, "0")
 
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_base_model(self, mock_stdout):
+        """Test the all command for BaseModel."""
+        self.console.onecmd("create BaseModel")
+        self.console.onecmd("create BaseModel")
+        self.console.onecmd("all BaseModel")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("BaseModel", output)
+        self.assertIn("2", output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_review(self, mock_stdout):
+        """Test the all command for Review."""
+        self.console.onecmd("create Review")
+        self.console.onecmd("create Review")
+        self.console.onecmd("all Review")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("Review", output)
+        self.assertIn("2", output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_user(self, mock_stdout):
+        """Test the all command for User."""
+        self.console.onecmd("create User")
+        self.console.onecmd("create User")
+        self.console.onecmd("all User")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("User", output)
+        self.assertIn("2", output)
+
+        @patch('sys.stdout', new_callable=StringIO)
+    def test_all_place(self, mock_stdout):
+        """Test the all command for Place."""
+        self.console.onecmd("create Place")
+        self.console.onecmd("create Place")
+        self.console.onecmd("all Place")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("Place", output)
+        self.assertIn("2", output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_amenity(self, mock_stdout):
+        """Test the all command for Amenity."""
+        self.console.onecmd("create Amenity")
+        self.console.onecmd("create Amenity")
+        self.console.onecmd("all Amenity")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("Amenity", output)
+        self.assertIn("2", output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_state(self, mock_stdout):
+        """Test the all command for State."""
+        self.console.onecmd("create State")
+        self.console.onecmd("create State")
+        self.console.onecmd("all State")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("State", output)
+        self.assertIn("2", output)
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_city(self, mock_stdout):
+        """Test the all command for City."""
+        self.console.onecmd("create City")
+        self.console.onecmd("create City")
+        self.console.onecmd("all City")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("City", output)
+        self.assertIn("2", output)
+
+
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_all_state(self, mock_stdout):
+        """Test the all command for State."""
+        self.console.onecmd("create State")
+        self.console.onecmd("create State")
+        self.console.onecmd("all State")
+        output = mock_stdout.getvalue().strip()
+        self.assertIn("State", output)
+
 
 if __name__ == "__main__":
     unittest.main()
