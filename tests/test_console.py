@@ -109,7 +109,7 @@ class TestConsole(unittest.TestCase):
         self.assertIn("User", output)
         self.assertIn("2", output)
 
-        @patch('sys.stdout', new_callable=StringIO)
+    @patch('sys.stdout', new_callable=StringIO)
     def test_all_place(self, mock_stdout):
         """Test the all command for Place."""
         self.console.onecmd("create Place")
