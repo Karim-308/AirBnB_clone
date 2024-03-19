@@ -1,17 +1,18 @@
 header {
-    height: 70px;
+    height: 50px;
     width: 100%;
-    background-color: #FF0000;
     border-bottom: 1px solid #CCCCCC;
     display: flex;
-    align-items: center;
+    align-items: center; /* Center vertically */
 }
 
 .logo {
-    width: 50px;
-    height: 50px;
-    background-image: url("https://s3.amazonaws.com/intranet-projects-files/holbertonschool-higher-level_programming+/268/icon.png");
+    width: 100px; /* Adjust the width as needed */
+    height: 100px; /* Adjust the height as needed */
+    background-image: url("../images/logo.png");
     background-size: contain;
     background-repeat: no-repeat;
-    margin-left: 20px;
+    margin-top: auto ;
+    margin-bottom: auto;
+    margin-left: 10px;
 }
